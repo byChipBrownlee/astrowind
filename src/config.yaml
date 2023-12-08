@@ -1,10 +1,10 @@
 site:
   name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  site: 'https://wonderful-caramel-31cc80.netlify.app'
   base: '/'
   trailingSlash: false
 
-  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+  googleSiteVerificationId:
 
 # Default SEO metadata
 metadata:
@@ -18,7 +18,7 @@ metadata:
   openGraph:
     site_name: AstroWind
     images:
-      - url: '~/assets/images/default.png'
+        url: '~/assets/images/default.png'
         width: 1200
         height: 628
     type: website
