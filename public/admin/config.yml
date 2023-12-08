@@ -2,8 +2,8 @@ backend:
   name: github
   branch: main
   repo: byChipBrownlee/astrowind
-  site_domain: wonderful-caramel-31cc80.netlify.app/
-  base_url: https://wonderful-caramel-31cc80.netlify.app/
+  site_domain: wonderful-caramel-31cc80.netlify.app
+  base_url: https://wonderful-caramel-31cc80.netlify.app
   auth_endpoint: oauth
 
 media_folder: 'src/assets/images'

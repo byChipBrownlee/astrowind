@@ -13,53 +13,20 @@ import tasks from './src/utils/tasks';
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter.mjs';
 import { ANALYTICS, SITE } from './src/utils/config.ts';
 import decapCmsOauth from "astro-decap-cms-oauth";
+import netlify from "@astrojs/netlify/functions";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const whenExternalScripts = (items = []) => ANALYTICS.vendors.googleAnalytics.id && ANALYTICS.vendors.googleAnalytics.partytown ? Array.isArray(items) ? items.map(item => item()) : [items()] : [];
+
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE.site,
   base: SITE.base,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
-  output: 'static',
+  output: 'server',
   integrations: [tailwind({
     applyBaseStyles: false
-  }), sitemap(), mdx(),
-  // NetlifyCMS({
-  //   adminPath: '/npadmin',
-  //   config: {
-  //     backend: {
-  //       name: 'git-gateway',
-  //       branch: 'main',
-  //     },
-  //     collections: [{
-  //       name: 'post',
-  //       label: 'Post',
-  //       folder: 'src/content/post',
-  //       create: true,
-  //       fields: [
-  //         { label: 'Title', name: 'title', widget: 'string' },
-  //         { label: 'Excerpt', name: 'excerpt', widget: 'string' },
-  //         { label: 'Category', name: 'category', widget: 'string' },
-  //         {
-  //           label: 'Tags',
-  //           name: 'tags',
-  //           widget: 'list',
-  //           allow_add: true,
-  //           allow_delete: true,
-  //           collapsed: false,
-  //           field: { label: 'Tag', name: 'tag', widget: 'string' },
-  //         },
-  //         { label: 'Image', name: 'image', widget: 'string' },
-  //         { label: 'Publish Date', name: 'publishDate', widget: 'datetime', required: false },
-  //         { label: 'Author', name: 'author', widget: 'string' },
-  //         { label: 'Content', name: 'body', widget: 'markdown' },
-  //       ],
-  //     },
-  //     ],
-  //   },
-  // }),
-  icon({
+  }), sitemap(), mdx(), icon({
     include: {
       tabler: ['*'],
       'flat-color-icons': ['template', 'gallery', 'approval', 'document', 'advertising', 'currency-exchange', 'voice-presentation', 'business-contact', 'database']
@@ -86,5 +53,6 @@ export default defineConfig({
         '~': path.resolve(__dirname, './src')
       }
     }
-  }
+  },
+  adapter: netlify()
 });
